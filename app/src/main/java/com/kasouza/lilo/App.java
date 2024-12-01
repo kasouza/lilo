@@ -14,25 +14,25 @@ import com.kasouza.lilo.shared.infra.cli.commands.TestCommand;
 
 public class App {
     public static void main(String[] args) {
-        ArgParser parse = new ArgParser();
+        //ArgParser parse = new ArgParser();
 
-        List<OptDef> optDefs = new ArrayList<>();
-        optDefs.add(new OptDef(Option.TEST, "--test", true));
+        //List<OptDef> optDefs = new ArrayList<>();
+        //optDefs.add(new OptDef(Option.TEST, "--test", true));
 
-        Arguments arguments = parse.parse(args, optDefs);
-        if (arguments == null) {
-            return;
-        }
+        //Arguments arguments = parse.parse(args, optDefs);
+        //if (arguments == null) {
+            //return;
+        //}
 
-        Map<String, ICommand> commands = new HashMap<>();
-        commands.put("test", new TestCommand());
+        //Map<String, ICommand> commands = new HashMap<>();
+        //commands.put("test", new TestCommand());
 
-        ICommand cmd = commands.get(arguments.getCommandName());
-        if (cmd == null) {
-            System.err.println("Invalid command " + arguments.getCommandName());
-            return;
-        }
+        //ICommand cmd = commands.get(arguments.getCommandName());
+        //if (cmd == null) {
+            //System.err.println("Invalid command " + arguments.getCommandName());
+            //return;
+        //}
 
-        cmd.execute(arguments.getCommandArgument(), arguments.getOptions());
+        //cmd.execute(arguments.getCommandArgument(), arguments.getOptions());
     }
 }
