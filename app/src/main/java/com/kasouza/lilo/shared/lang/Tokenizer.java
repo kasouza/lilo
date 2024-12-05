@@ -25,6 +25,10 @@ public class Tokenizer {
     private String input;
     private int cursor;
 
+    public Tokenizer() {
+        this.reset("");
+    }
+
     public Tokenizer(String input) {
         reset(input);
     }
@@ -44,6 +48,10 @@ public class Tokenizer {
 
     public Token getNextToken() {
         // Ignore whitespace
+        if (this.isEOF()) {
+            return null;
+        }
+
         if (Character.isWhitespace(input.charAt(cursor))) {
             while (!isEOF() && Character.isWhitespace(input.charAt(cursor))) {
                 this.cursor++;

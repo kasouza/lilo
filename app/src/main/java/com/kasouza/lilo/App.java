@@ -1,38 +1,24 @@
 package com.kasouza.lilo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.kasouza.lilo.shared.infra.cli.ArgParser;
-import com.kasouza.lilo.shared.infra.cli.Arguments;
-import com.kasouza.lilo.shared.infra.cli.OptDef;
-import com.kasouza.lilo.shared.infra.cli.Option;
-import com.kasouza.lilo.shared.infra.cli.commands.ICommand;
-import com.kasouza.lilo.shared.infra.cli.commands.TestCommand;
+import com.kasouza.lilo.shared.lang.Parser;
+import com.kasouza.lilo.shared.lang.SyntaxException;
+import com.kasouza.lilo.shared.lang.ast.ProgramNode;
 
 public class App {
     public static void main(String[] args) {
-        //ArgParser parse = new ArgParser();
+        String code = """
+                    func $1 $2 ; func2 $3 $4 |
+                    func $1 $2 ; func2 $3 $4
+                """;
 
-        //List<OptDef> optDefs = new ArrayList<>();
-        //optDefs.add(new OptDef(Option.TEST, "--test", true));
+        // TODO: Add tests fo tha parsar
+        try {
+            Parser parser = new Parser(code);
+            ProgramNode prog = parser.parse();
+            System.out.println(prog);
 
-        //Arguments arguments = parse.parse(args, optDefs);
-        //if (arguments == null) {
-            //return;
-        //}
-
-        //Map<String, ICommand> commands = new HashMap<>();
-        //commands.put("test", new TestCommand());
-
-        //ICommand cmd = commands.get(arguments.getCommandName());
-        //if (cmd == null) {
-            //System.err.println("Invalid command " + arguments.getCommandName());
-            //return;
-        //}
-
-        //cmd.execute(arguments.getCommandArgument(), arguments.getOptions());
+        } catch (SyntaxException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
